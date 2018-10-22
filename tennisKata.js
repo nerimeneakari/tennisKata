@@ -26,11 +26,11 @@ TennisGame.prototype.hasWinner = function() {
     return true;
   }
 
-  if (this.playerOneScore > 55 && this.hasAdvantage()) {
+  if (this.playerOneScore > 55 && this.playerTwoScore === 40) {
     return true;
   }
 
-  if (this.playerTwoScore > 55 && this.hasAdvantage()) {
+  if (this.playerTwoScore > 55 && this.playerOneScore === 40) {
     return true;
   }
 
@@ -53,9 +53,20 @@ TennisGame.prototype.hasAdvantage = function() {
 
 TennisGame.prototype.deuce = function() {
   // console.log("DEUCE");
-  return (
-    this.playerOneScore === 40 && this.playerTwoScore === this.playerOneScore
-  );
+  if (
+    this.playerOneScore === 40 &&
+    this.playerTwoScore === this.playerOneScore
+  ) {
+    return true;
+  } else if (this.playerOneScore === 55 && this.playerTwoScore === 55) {
+    this.playerOneScore = 40;
+    // console.log(this.playerOneScore)
+    this.playerTwoScore = 40;
+    // console.log(this.playerTwoScore)
+    return true;
+  } else {
+    return false;
+  }
 };
 
 TennisGame.prototype.playerOneScores = function() {
@@ -116,18 +127,14 @@ TennisGame.prototype.getScore = function() {
 // tennisGame = new TennisGame("salut", "toi");
 // tennisGame.getScore();
 // tennisGame.playerOneScores();
-// tennisGame.getScore();
 // tennisGame.playerTwoScores();
-// tennisGame.getScore();
 // tennisGame.playerOneScores();
-// tennisGame.getScore();
 // tennisGame.playerTwoScores();
-// tennisGame.getScore();
 // tennisGame.playerOneScores();
-// tennisGame.getScore();
 // tennisGame.playerTwoScores();
 // tennisGame.playerOneScores();
 // tennisGame.playerTwoScores();
 // tennisGame.playerTwoScores();
+// tennisGame.playerOneScores();
 // tennisGame.playerOneScores();
 // tennisGame.getScore();
