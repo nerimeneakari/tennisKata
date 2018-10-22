@@ -16,19 +16,21 @@ TennisGame.prototype.playerWithBestScore = function() {
 };
 
 TennisGame.prototype.hasWinner = function() {
-  if (
-    this.playerTwoScore >= 55 &&
-    this.playerTwoScore === this.playerOneScore + 30
-  ) {
+  if (this.playerTwoScore > 40 && this.playerOneScore < 40) {
     // console.log("Player 2 has WINNER");
     return true;
   }
 
-  if (
-    this.playerOneScore >= 55 &&
-    this.playerOneScore === this.playerTwoScore + 30
-  ) {
+  if (this.playerOneScore > 40 && this.playerTwoScore < 40) {
     // console.log("Player 1 has WINNER");
+    return true;
+  }
+
+  if (this.playerOneScore > 55 && this.hasAdvantage()) {
+    return true;
+  }
+
+  if (this.playerTwoScore > 55 && this.hasAdvantage()) {
     return true;
   }
 
@@ -36,12 +38,12 @@ TennisGame.prototype.hasWinner = function() {
 };
 
 TennisGame.prototype.hasAdvantage = function() {
-  if (this.playerTwoScore >= 40 && this.playerOneScore === 30) {
+  if (this.playerTwoScore > 40 && this.playerOneScore === 40) {
     // console.log("Player 2 has ADVANTAGE");
     return true;
   }
 
-  if (this.playerOneScore >= 40 && this.playerTwoScore === 30) {
+  if (this.playerOneScore > 40 && this.playerTwoScore === 40) {
     // console.log("Player 1 has ADVANTAGE");
     return true;
   }
@@ -52,7 +54,7 @@ TennisGame.prototype.hasAdvantage = function() {
 TennisGame.prototype.deuce = function() {
   // console.log("DEUCE");
   return (
-    this.playerOneScore >= 40 && this.playerTwoScore === this.playerOneScore
+    this.playerOneScore === 40 && this.playerTwoScore === this.playerOneScore
   );
 };
 
@@ -91,6 +93,7 @@ TennisGame.prototype.getScore = function() {
 
   if (this.hasAdvantage()) {
     // console.log("Advantage " + this.playerWithBestScore());
+
     return "Advantage " + this.playerWithBestScore();
   }
 
@@ -122,6 +125,9 @@ TennisGame.prototype.getScore = function() {
 // tennisGame.getScore();
 // tennisGame.playerOneScores();
 // tennisGame.getScore();
+// tennisGame.playerTwoScores();
+// tennisGame.playerOneScores();
+// tennisGame.playerTwoScores();
 // tennisGame.playerTwoScores();
 // tennisGame.playerOneScores();
 // tennisGame.getScore();
